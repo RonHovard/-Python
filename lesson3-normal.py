@@ -34,7 +34,7 @@ for line in file:
     if salary < MAX_SALARY:
         tax = salary * PERCENT / 100
         sal_after_tax = salary - int(tax)
-        print(f'{name.upper()} - общая зп: {salary}  после вычета НДФЛ: {sal_after_tax}')
+        print(f'{name.upper()}: общая зп - {salary}; после вычета НДФЛ - {sal_after_tax}')
 file.close()
 
 

@@ -15,32 +15,28 @@ email = input('Введите адрес электронной почты: ')
 pattern_name = '([A-ZА-ЯЁ][a-zа-яё]+)'
 pattern_email = '([a-z_0-9]+@[a-z0-9]+\.(ru|com|org))'
 
-check_name = re.match(pattern_name, name)
-check_surname = re.match(pattern_name, surname)
 check_email = re.search(pattern_email, email)
-# def error_text(a):
-#     return '{}(некорректный ввод данных)'
 
-try:
-    result_name = check_name.group(1)
-except AttributeError:
-    result_name = '{} (неправильно введено имя)'.format(name)
 
-try:
-    result_surname = check_surname.group(1)
-except AttributeError:
-    result_surname = '{} (неверно введена фамилия)'.format(surname)
+def error_text(a):
+    return '{}(некорректный ввод данных)'.format(a)
+
+
+def get_user_data(arg):
+    check = re.match(pattern_name, arg)
+    try:
+        result = check.group(1)
+    except AttributeError:
+        result = error_text(arg)
+    return result
+
 
 try:
     result_email = check_email.group(1)
 except AttributeError:
-    result_email = '{} (неверно указан email)'.format(email)
+    result_email = error_text(email)
 
-
-print(result_name, result_surname, result_email)
-
-
-
+print(get_user_data(name), get_user_data(surname), result_email)
 
 # Задача - 2:
 # Вам дан текст:

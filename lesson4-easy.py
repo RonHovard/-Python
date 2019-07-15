@@ -16,8 +16,8 @@ print(new_numbers)
 
 fruits_1 = ['apple', 'banana', 'grapes', 'mango', 'orange', 'plum']
 fruits_2 = ['lemon', 'banana', 'grapes', 'plum', 'peach']
-same_fruits = list(set(fruits_1) & set(fruits_2))
-
+# same_fruits = list(set(fruits_1) & set(fruits_2))
+same_fruits = [i for i in fruits_1 if i in fruits_2]
 print(same_fruits)
 
 # Задание-3:
@@ -27,7 +27,10 @@ print(same_fruits)
 # + Элемент положительный
 # + Элемент не кратен 4
 
-numbers = [45, 4, 15, 33, -8, 120, 10, 897, -55, 1, -100]
+import random
+
+# numbers = [45, 4, 15, 33, -8, 120, 10, 897, -55, 1, -100]
+numbers = [random.randint(-100, 100) for _ in range(100)]
 # new_numbers = []
 # for i in numbers:
 #     if i % 3 == 0:
@@ -35,6 +38,6 @@ numbers = [45, 4, 15, 33, -8, 120, 10, 897, -55, 1, -100]
 #             if i % 4 != 0:
 #                 new_numbers.append(i)
 # for i in numbers:
+print(numbers)
 new_numbers = [i for i in numbers if i % 3 == 0 and i > 0 and i % 4 != 0]
-
 print(new_numbers)

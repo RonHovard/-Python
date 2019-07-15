@@ -7,36 +7,36 @@
 # Пупкин василий - неверно указано имя, te$T@test.net - неверно указан email (спецсимвол, заглавная буква, .net), te_4_st@test.com - верно указан.
 
 import re
-#
-# name = input('Введите Ваше имя: ')
-# surname = input('Введите Вашу фамилию: ')
-# email = input('Введите адрес электронной почты: ')
-#
-# pattern_name = '([A-ZА-ЯЁ][a-zа-яё]+)'
-# pattern_email = '([a-z_0-9]+@[a-z0-9]+\.(ru|com|org))'
-#
-# check_email = re.search(pattern_email, email)
-#
-#
-# def error_text(a):
-#     return '{}(некорректный ввод данных)'.format(a)
-#
-#
-# def get_user_data(arg):
-#     check = re.match(pattern_name, arg)
-#     try:
-#         result = check.group(1)
-#     except AttributeError:
-#         result = error_text(arg)
-#     return result
-#
-#
-# try:
-#     result_email = check_email.group(1)
-# except AttributeError:
-#     result_email = error_text(email)
-#
-# print(get_user_data(name), get_user_data(surname), result_email)
+
+name = input('Введите Ваше имя: ')
+surname = input('Введите Вашу фамилию: ')
+email = input('Введите адрес электронной почты: ')
+
+pattern_name = '([A-ZА-ЯЁ][a-zа-яё]+$)'
+pattern_email = '(^[a-z_0-9]+@[a-z0-9]+\.(ru|com|org)$)'
+
+check_email = re.search(pattern_email, email)
+
+
+def error_text(a):
+    return '{}(некорректный ввод данных)'.format(a)
+
+
+def get_user_data(arg):
+    check = re.match(pattern_name, arg)
+    try:
+        result = check.group(1)
+    except AttributeError:
+        result = error_text(arg)
+    return result
+
+
+try:
+    result_email = check_email.group(1)
+except AttributeError:
+    result_email = error_text(email)
+
+print(get_user_data(name), get_user_data(surname), result_email)
 
 # Задача - 2:
 # Вам дан текст:
@@ -76,7 +76,7 @@ some_str = '''
 # Необходимо с помощью регулярных выражений определить есть ли в тексте подряд
 # более одной точки, при любом исходе сообщите результат пользователю!
 
-pattern_text = '(\.\.\.)'
+pattern_text = '(\.{2,})'
 check_text = re.search(pattern_text, some_str)
 try:
     result_check_text = check_text.group(1)

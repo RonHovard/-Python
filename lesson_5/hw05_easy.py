@@ -14,7 +14,7 @@ import shutil
 #  Например: creation_dir('dir_1', 'dir_9')
 #  Для создания одной директории достаточно указать её имя в
 #  поле для аргументов два раза через ",".
-#  Например: creation_dir('dir', 'dir')
+#  Например: creation_dir('dir', 'dir').
 
 
 def creation_dir(a, b):

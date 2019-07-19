@@ -1,7 +1,7 @@
 import os
-import shutil
 # импортирую функцию из модуля созданных при выполнении easy
-from creat_dir_n import creation_dir
+from easy_5 import mk_dir, rm_dir
+
 
 # Задача-1:
 # Напишите небольшую консольную утилиту,
@@ -19,29 +19,39 @@ from creat_dir_n import creation_dir
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
 
+
+def ch_dir(fold_name):
+    try:
+        os.chdir(fold_name)
+        print(f'Зашёл в папку{fold_name}')
+    except FileNotFoundError:
+        print('Переход невозможен, папка с таким именем не существует')
+
+
 print('Добро пожаловать!')
+do = {
+    1: ch_dir,
+    2: os.listdir(),
+    3: mk_dir,
+    4: rm_dir,
+}
 
 while True:
-    print('Меню доступных опций: ')
-    print(" [1] - перейти в папку")
-    print(" [2] - посмотреть содержимое текущей папки")
-    print(" [3] - создать папку")
-    print(" [4] - удалить папку")
-    answer = int(input('Введите номер действия(для выхода введите 0): '))
+    print('Меню доступных опций: \n'
+          '........................\n'
+          '[1] - перейти в папку\n'
+          '[2] - посмотреть содержимое текущей папки\n'
+          '[3] - создать папку\n'
+          '[4] - удалить папку\n'
+          '[0] - выход')
+    answer = int(input('Введите номер действия: '))
 
-    if answer == 1:
+    if answer == 1 or answer == 3 or answer == 4:
         folder_name = input('Введите имя папки: ')
-        os.chdir(folder_name)
-        print(f'Зашёл в папку{folder_name}')
+        do[answer](folder_name)
     elif answer == 2:
-        print(os.listdir())
-    elif answer == 3:
-        folder_name = input('Введите имя папки: ')
-        creation_dir(folder_name, folder_name)
-        print(f'папка: {folder_name}, успешно создана')
-    elif answer == 4:
-        folder_name = input('Введите имя папки: ')
-        os.rmdir(folder_name)
-        print(f'папка: {folder_name}, была удалена')
+        do[answer]
     elif answer == 0:
         break
+    else:
+        print('Некорректный ввод.')

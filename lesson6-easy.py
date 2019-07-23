@@ -10,51 +10,47 @@
 # в родительский и остальные просто наследовать от него.
 
 
-class TownCar:
-    def __init__(self, name, color):
+class Car:
+    def __init__(self, speed, color, name):
+        self.speed = speed
         self.color = color
         self.name = name
+        self.is_police = False
 
     def go(self):
-        print("Let's go...")
+        print("{}, let's go...".format(self.name))
 
     def stop(self):
-        print('stop machine')
+        print('{}, stop machine'.format(self.name))
 
     def turn(self, course):
-        if course == 'left':
-            print('to turn left')
-        elif course == 'right':
-            print('to turn right')
+        print('to turning {}'.format(course))
 
 
-# zhuk = TownCar('j7', 'yellow')
-# zhuk.go()
-# zhuk.turn('left')
-# zhuk.turn('right')
-# zhuk.stop()
-# print(zhuk.color)
-
-# wolk = TownCar()
-# print(wolk.name)
+class TownCar(Car):
+    pass
 
 
-class SportCar(TownCar):
-    def __init__(self, name, color, speed):
-        super(SportCar, self).__init__(name, color)
-        self.speed = speed
+class SportCar(Car):
+    def __init__(self, speed, color, name, turbo=True):
+        super().__init__(speed, color, name)
+        self.turbo = turbo
 
 
-class PoliceCar(TownCar):
-    def __init__(self, name, color):
-        super(PoliceCar, self).__init__(name, color)
-        self.is_police()
-
-    def is_police(self):
-        print('Мау, мау, мау...')
+class WorkCar(Car):
+    pass
 
 
-policay = PoliceCar('ment', 'бело-голубой')
+class PoliceCar(Car):
+    def __init__(self, speed, color, name):
+        super().__init__(speed, color, name)
+        self.is_police = True
 
-print(policay.color, policay.name)
+    def siren(self):
+        print('May,May....')
 
+
+my_town_car = PoliceCar(120, 'Белый', 'Гранта')
+
+my_town_car.siren()
+print(my_town_car.name)

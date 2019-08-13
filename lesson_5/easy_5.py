@@ -6,7 +6,6 @@ import shutil
 # из которой запущен данный скрипт.
 # И второй скрипт, удаляющий эти папки.
 
-
 def mk_dir(path):
     try:
         os.mkdir(path)
